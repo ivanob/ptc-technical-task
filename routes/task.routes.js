@@ -6,7 +6,7 @@ const routes = []
 routes.push(
   {
     method: 'GET',
-    path: `${config.get('api.base-path')}/task`,
+    path: `${config.get('api.base-path')}/task/{id}`,
     handler: TaskHandler.getAverageTime
   })
 

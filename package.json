@@ -9,6 +9,7 @@
   "author": "Ivan Obeso",
   "license": "ISC",
   "dependencies": {
+    "boom": "^5.1.0",
     "config": "^1.26.1",
     "glob": "^7.1.2",
     "hapi": "^16.4.3",
