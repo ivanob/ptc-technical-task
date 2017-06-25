@@ -39,14 +39,12 @@ apiServer.register(apiPlugins, (error) => {
   loadRoutes(apiServer)
 })
 
-console.log("HI")
-
 // ---------- HAPI SERVER ----------
 
 hapiServer.start((error) => {
   traceError(hapiServer, 'SERVER', error)
-
   hapiServer.connections.forEach(connection => {
     hapiServer.log('info', `Server running at: ${connection.info.uri}`)
+    console.log(`Server running at: ${connection.info.uri}`)
   })
 })

@@ -1,6 +1,6 @@
 const Boom = require('boom')
 
-const storeTaskPerform = id => {
+const getTaskPerform = id => {
   new Promise((resolve, reject) => {
     if(id !== undefined){
       resolve({ id: "jojo" })
@@ -10,6 +10,11 @@ const storeTaskPerform = id => {
   }
 )}
 
+const storeTaskPerform = data => {
+  console.log(data.aaa)
+}
+
 module.exports = {
+  getTaskPerform: id => getTaskPerform(id),
   storeTaskPerform: data => storeTaskPerform(data)
 }
