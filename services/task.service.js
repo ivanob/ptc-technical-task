@@ -15,6 +15,7 @@ const getTaskPerform = id => {
 const storeTaskPerform = data => {
   new Promise((resolve, reject) => {
     if(data.id !== undefined && data.duration !== undefined){
+      data.duration = Number(data.duration)
       mongo.storeTaskPerform(data)
       resolve({ id: "jojo" })
     } else{
