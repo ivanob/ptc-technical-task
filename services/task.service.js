@@ -2,10 +2,10 @@ const mongo = require('../persistance/mongo.persistance')
 const Boom = require('boom')
 
 const getTaskPerform = id => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     if(id !== undefined){
-      mongo.getTaskPerform(id)
-      resolve({ id: id, average: 0 })
+      var objPerform = mongo.getTaskPerform(id)
+      resolve(objPerform)
     } else{
       reject(Boom.badRequest('No ID of task specified'))
     }
@@ -13,11 +13,11 @@ const getTaskPerform = id => {
 )}
 
 const storeTaskPerform = data => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     if(data.id !== undefined && data.duration !== undefined){
       data.duration = Number(data.duration)
       mongo.storeTaskPerform(data)
-      resolve({ id: "jojo" })
+      resolve(data)
     } else{
       reject(Boom.badRequest('No ID or duration of task specified'))
     }
