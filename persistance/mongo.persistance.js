@@ -19,7 +19,11 @@ const getTaskPerform = id => {
     var query = { id: id };
     db.collection("tasks").find(query).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result);
+      console.log(result)
+      var newObj = result.reduce((a, b) => {return {id: id, duration:parseInt(a.duration) + parseInt(b.duration)}})
+      console.log(newObj.duration);
+      newObj.duration /= result.length
+      console.log(newObj);
       db.close();
     });
   });
