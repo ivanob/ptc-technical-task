@@ -16,12 +16,14 @@ const getTaskPerform = id => {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var query = { id: id };
-    db.collection("tasks").find(query).toArray(function(err, result) {
+    var a = db.collection("tasks").find(query).toArray(function(err, result) {
       if (err) throw err;
       var newObj = result.reduce((a, b) => {return {id: id, duration:a.duration + b.duration}})
       newObj.duration /= result.length
       db.close();
+      return newObj
     });
+    console.log(a)
   });
 }
 
