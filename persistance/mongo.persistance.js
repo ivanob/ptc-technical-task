@@ -3,27 +3,24 @@ var url = "mongodb://localhost:27017/mydb";
 
 const storeTaskPerform = taskObj => {
   MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
+    if (err) throw errs
     db.collection("tasks").insertOne(taskObj, function(err, res) {
-      if (err) throw err;
-      console.log("1 record inserted");
+      if (err) throw err
+      console.log("1 record inserted")
       db.close();
     });
   });
 }
 
 const getTaskPerform = id => {
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var query = { id: id };
-    var a = db.collection("tasks").find(query).toArray(function(err, result) {
-      if (err) throw err;
-      var newObj = result.reduce((a, b) => {return {id: id, duration:a.duration + b.duration}})
-      newObj.duration /= result.length
-      db.close();
-      return newObj
-    });
-    console.log(a)
+  return MongoClient.connect(url).then(function(db) {
+      var collection = db.collection('tasks');
+      var query = { id: id }
+      return collection.find(query).toArray();
+    }).then(function(items) {
+      var newObj = items.reduce((a, b) => {return {id: id, duration:a.duration + b.duration}})
+      newObj.duration /= items.length
+      return newObj;
   });
 }
 

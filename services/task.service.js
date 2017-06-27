@@ -4,9 +4,7 @@ const Boom = require('boom')
 const getTaskPerform = id => {
   return new Promise((resolve, reject) => {
     if(id !== undefined){
-      var objPerform = mongo.getTaskPerform(id)
-      console.log(objPerform)
-      resolve(objPerform)
+      mongo.getTaskPerform(id).then(objPerform => resolve(objPerform))
     } else{
       reject(Boom.badRequest('No ID of task specified'))
     }
