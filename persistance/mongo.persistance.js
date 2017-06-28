@@ -9,21 +9,23 @@ const storeTaskPerform = taskObj => {
     db.collection(coll).insertOne(taskObj, function(err, res) {
       if (err) throw err
       console.log("1 record inserted")
-      db.close();
+      db.close()
     });
   });
 }
 
 const getTaskPerform = id => {
   return MongoClient.connect(url).then(function(db) {
-      var collection = db.collection(coll);
+      var collection = db.collection(coll)
       var query = { id: id }
-      return collection.find(query).toArray();
+      var items = collection.find(query).toArray()
+      db.close()
+      return items
     }).then(function(items) {
       if(items.length != 0){
         var newObj = items.reduce((a, b) => {return {id: id, duration:a.duration + b.duration}})
         newObj.duration /= items.length
-        return newObj;
+        return newObj
       }else{
         return null
       }
