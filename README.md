@@ -4,7 +4,7 @@ keep track of performance of N processes. It accepts 2 REST calls:
 - Store task (POST): stores the duration (in milliseconds) of a task given its ID.
 - Return average (GET): retrieves the average duration of the task which ID is sent.
 To do so, it queries the database to return all the durations registered for
-that specific ID and calculates its average time.
+that specific ID and calculates the average time.
 
 # How to run the microservice (Docker)
 
@@ -14,7 +14,7 @@ the following path:
 ```
 /data/db
 ```
-In case you have a different path in your machine, you can edit the docker-compose.yml
+In case you have a different path in your machine, you can edit the *docker-compose.yml*
 file and change that path.
 
 ### Docker
@@ -42,11 +42,11 @@ npm start
 
 I am using HTTPie tool to test the service (https://httpie.org/)
 An example of use from command line is: Ask for the average performance
-of tasks with ID 3
+of tasks with *ID=3*
 ```
 http GET localhost:3000/task/3
 ```
-Store the performance of task with ID 4, and duration=20.5 milliseconds
+Store the performance of task with *ID=4*, and *duration=20.5* milliseconds
 ```
 http POST localhost:3000/task id=4 duration=20.5
 ```
