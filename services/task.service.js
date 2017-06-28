@@ -9,7 +9,13 @@ const getTaskPerform = id => {
       }else if(id<0){
         reject(Boom.badRequest('ID should be a positive number'))
       }else{
-        mongo.getTaskPerform(id).then(objPerform => resolve(objPerform))
+        mongo.getTaskPerform(id).then(objPerform => {
+          if(objPerform == null){
+            reject(Boom.badRequest('That ID is not registered yet'))
+          }else{
+            resolve(objPerform)
+          }
+        })
       }
     } else{
       reject(Boom.badRequest('No ID of task specified'))

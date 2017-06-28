@@ -24,6 +24,8 @@ const getTaskPerform = id => {
         var newObj = items.reduce((a, b) => {return {id: id, duration:a.duration + b.duration}})
         newObj.duration /= items.length
         return newObj;
+      }else{
+        return null
       }
   });
 }
