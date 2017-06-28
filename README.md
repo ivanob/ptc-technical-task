@@ -42,11 +42,11 @@ npm start
 
 I am using HTTPie tool to test the service (https://httpie.org/)
 An example of use from command line is: Ask for the average performance
-of tasks with *ID=3*
+of tasks with **ID=3**
 ```
 http GET localhost:3000/task/3
 ```
-Store the performance of task with *ID=4*, and *duration=20.5* milliseconds
+Store the performance of task with **ID=4**, and **duration=20.5** milliseconds
 ```
 http POST localhost:3000/task id=4 duration=20.5
 ```
