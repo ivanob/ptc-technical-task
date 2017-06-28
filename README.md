@@ -1,8 +1,10 @@
 # ptc-technical-task
 This is a coding task challenge. The goal is to develop a microservice to
-keep track of the performance of N processes. It accepts 2 REST calls:
-- Store task: stores the duration of a task given its ID
-- Return average: retrieves the average duration of the task which ID is sent
+keep track of performance of N processes. It accepts 2 REST calls:
+- Store task (POST): stores the duration (in milliseconds) of a task given its ID.
+- Return average (GET): retrieves the average duration of the task which ID is sent.
+To do so, it queries the database to return all the durations registered for
+that specific ID and calculates its average time.
 
 # How to run the microservice (Docker)
 
@@ -44,7 +46,7 @@ of tasks with ID 3
 ```
 http GET localhost:3000/task/3
 ```
-Store the performance of task with ID 4, and duration=20.5 seconds
+Store the performance of task with ID 4, and duration=20.5 milliseconds
 ```
 http POST localhost:3000/task id=4 duration=20.5
 ```
