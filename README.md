@@ -35,3 +35,16 @@ After that, you can go to the project directory and run the microservice
 npm install
 npm start
 ```
+
+# How to test it
+
+I am using HTTPie tool to test the service (https://httpie.org/)
+An example of use from command line is: Ask for the average performance
+of tasks with ID 3
+```
+http GET localhost:3000/task/3
+```
+Store the performance of task with ID 4, and duration=20.5 seconds
+```
+http POST localhost:3000/task id=4 duration=20.5
+```
