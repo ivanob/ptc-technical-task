@@ -14,9 +14,17 @@ const getTaskPerform = id => {
 const storeTaskPerform = data => {
   return new Promise((resolve, reject) => {
     if(data.id !== undefined && data.duration !== undefined){
-      data.duration = Number(data.duration)
-      mongo.storeTaskPerform(data)
-      resolve(data)
+      if(isNaN(data.id) || isNaN(data.duration)){
+        reject(Boom.badRequest('ID and duration should be numbers'))
+      }else{
+        if(data.duration<=0){
+          reject(Boom.badRequest('Duration should be a positive number'))
+        }else{
+          data.duration = Number(data.duration)
+          mongo.storeTaskPerform(data)
+          resolve(data)
+        }
+      }
     } else{
       reject(Boom.badRequest('No ID or duration of task specified'))
     }

@@ -20,6 +20,7 @@ const getTaskPerform = id => {
       var query = { id: id }
       return collection.find(query).toArray();
     }).then(function(items) {
+      //if(items.length == 0){}
       var newObj = items.reduce((a, b) => {return {id: id, duration:a.duration + b.duration}})
       newObj.duration /= items.length
       return newObj;
