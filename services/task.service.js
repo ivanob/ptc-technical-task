@@ -4,7 +4,13 @@ const Boom = require('boom')
 const getTaskPerform = id => {
   return new Promise((resolve, reject) => {
     if(id !== undefined){
-      mongo.getTaskPerform(id).then(objPerform => resolve(objPerform))
+      if(isNaN(id)){
+        reject(Boom.badRequest('ID should be a number'))
+      }else if(id<0){
+        reject(Boom.badRequest('ID should be a positive number'))
+      }else{
+        mongo.getTaskPerform(id).then(objPerform => resolve(objPerform))
+      }
     } else{
       reject(Boom.badRequest('No ID of task specified'))
     }
