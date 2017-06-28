@@ -1,10 +1,12 @@
+const config = require('config')
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
+var url = config.get('mongo.url')
+var coll = config.get('mongo.coll')
 
 const storeTaskPerform = taskObj => {
   MongoClient.connect(url, function(err, db) {
     if (err) throw errs
-    db.collection("tasks").insertOne(taskObj, function(err, res) {
+    db.collection(coll).insertOne(taskObj, function(err, res) {
       if (err) throw err
       console.log("1 record inserted")
       db.close();
@@ -14,7 +16,7 @@ const storeTaskPerform = taskObj => {
 
 const getTaskPerform = id => {
   return MongoClient.connect(url).then(function(db) {
-      var collection = db.collection('tasks');
+      var collection = db.collection(coll);
       var query = { id: id }
       return collection.find(query).toArray();
     }).then(function(items) {
