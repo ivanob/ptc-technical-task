@@ -4,5 +4,6 @@ port = 3000
 base-path = ""
 
 [mongo]
-url = "mongodb://localhost:27017/mydb"
+#url = "mongodb://localhost:27017/mydb"
+url = "mongodb://mongo/mydb"
 coll = "tasks"
